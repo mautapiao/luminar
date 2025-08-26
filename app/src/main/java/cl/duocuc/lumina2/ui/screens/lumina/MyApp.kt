@@ -78,7 +78,7 @@ fun MyApp() {
 
         }
 
-        //  la otra opcion ?: = "si es null, usa este otro valor".
+        //  la otra forma a la anterior ?: = "si es null, usa este otro valor".
         composable("ipc") {
             val todayIndicator = FakeIndicators.getTodayIndicator()
             IpcScreen(navController, todayIndicator ?: FakeIndicators.indicators.last())
@@ -92,7 +92,9 @@ fun MyApp() {
             DolarScreen(navController, todayIndicator ?: FakeIndicators.indicators.last())
         }
 
-        // recfactorizar una vez analizados que otros "widget" que son necesarios
+        // recfactorizar: una vez analizados que otros "widget" futuros son necesarios,
+        // lo anterior podria quedar en una sola composable donde se envie el indicador
+        // como variable. ejemplo: composable( "indicador/{nombre_indicador}",
     }
 
 }
