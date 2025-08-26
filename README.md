@@ -1,5 +1,14 @@
 # Luminar App para personas con discapacidad visual
 
+- **Usuarios por defecto**
+  - ana@demo.com
+  - juan@demo.com
+  - maria@demo.com
+  - carlos@demo.com
+  - lucia@demo.com
+
+- Para todos clave: 123456
+
 # Actividad Sumativa 1: Iniciando la creación de una aplicación móvil con Android Studio
 
 ## Descripción de la actividad
