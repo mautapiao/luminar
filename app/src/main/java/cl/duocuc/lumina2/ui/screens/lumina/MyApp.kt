@@ -9,6 +9,7 @@ import cl.duocuc.lumina2.data.repository.UserRepository
 import cl.duocuc.lumina2.ui.screens.auth.LoginScreen
 import cl.duocuc.lumina2.ui.screens.auth.RecuperarPasswordScreen
 import cl.duocuc.lumina2.ui.screens.auth.RegistroScreen
+import cl.duocuc.lumina2.utils.Globals
 
 @Composable
 fun MyApp() {
@@ -95,6 +96,17 @@ fun MyApp() {
         // recfactorizar: una vez analizados que otros "widget" futuros son necesarios,
         // lo anterior podria quedar en una sola composable donde se envie el indicador
         // como variable. ejemplo: composable( "indicador/{nombre_indicador}",
+
+        composable("calc") {
+            Calculadora (onBack = { navController.popBackStack() })
+        }
+
+        composable("info") {
+            Info (userName = Globals.userName ?: "Invitado", onBack = { navController.popBackStack() })
+        }
+
+
     }
+
 
 }

@@ -39,6 +39,15 @@ fun PantallaIndicador(
         horizontalAlignment = Alignment.CenterHorizontally,
         verticalArrangement = Arrangement.Center
     ) {
+        Text(
+            text = "INDICADOR",
+            fontSize = 26.sp,
+            color = Color.White.copy(alpha = 0.9f),
+            textAlign = TextAlign.Center
+        )
+
+        Spacer(modifier = Modifier.height(16.dp))
+
         Card(
             modifier = Modifier
                 .fillMaxWidth()
@@ -91,15 +100,7 @@ fun PantallaIndicador(
         Spacer(modifier = Modifier.height(32.dp))
 
         Text(
-            text = "Indicador",
-            fontSize = 26.sp,
-            color = Color.White.copy(alpha = 0.9f),
-            textAlign = TextAlign.Center
-        )
-        Spacer(modifier = Modifier.height(16.dp))
-
-        Text(
-            text = getCurrentDate(),
+            text = getCurrentDate().uppercase(),
             fontSize = 26.sp,
             color = Color.White.copy(alpha = 0.9f),
             textAlign = TextAlign.Center

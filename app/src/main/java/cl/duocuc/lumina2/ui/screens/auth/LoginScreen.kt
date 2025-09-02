@@ -8,10 +8,12 @@ import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.height
 import androidx.compose.foundation.layout.padding
+import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.filled.Email
 import androidx.compose.material.icons.filled.Lock
 import androidx.compose.material3.Button
+import androidx.compose.material3.ButtonDefaults
 import androidx.compose.material3.Icon
 import androidx.compose.material3.LocalTextStyle
 import androidx.compose.material3.MaterialTheme
@@ -30,6 +32,7 @@ import androidx.compose.runtime.setValue
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.res.painterResource
+import androidx.compose.ui.semantics.semantics
 import androidx.compose.ui.text.input.PasswordVisualTransformation
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
@@ -40,6 +43,9 @@ import cl.duocuc.lumina2.ui.theme.FontSizes.BUTTON_TEXT
 import cl.duocuc.lumina2.ui.theme.FontSizes.BUTTON_TEXT_LABEL
 import cl.duocuc.lumina2.ui.theme.FontSizes.TEXT_SIZE_INPUT
 import kotlinx.coroutines.launch
+import androidx.compose.ui.semantics.contentDescription
+import cl.duocuc.lumina2.utils.Globals
+
 
 @Composable
 fun LoginScreen(onLogin: () -> Unit, onRegister: () -> Unit, onForgotPassword: () -> Unit) {
@@ -142,9 +148,10 @@ fun LoginScreen(onLogin: () -> Unit, onRegister: () -> Unit, onForgotPassword: (
 
                 // Función que se ejecuta cada vez que el usuario escribe en el campo
                 onValueChange = {
-                    email = it                    // Actualiza el valor del email
+                    email = it.lowercase()                  // Actualiza el valor del email
                     emailError = validarEmail(it) // Valida el nuevo valor y actualiza el error
                 },
+
 
                 // Etiqueta que aparece como placeholder y se anima al escribir
                 label = { Text("Correo electrónico", fontSize = BUTTON_TEXT_LABEL.sp) },
@@ -182,7 +189,7 @@ fun LoginScreen(onLogin: () -> Unit, onRegister: () -> Unit, onForgotPassword: (
                 },
                 textStyle = LocalTextStyle.current.copy(fontSize = TEXT_SIZE_INPUT.sp),
 
-            )
+                )
 
             // espacio entre elementos
             Spacer(modifier = Modifier.height(16.dp))
@@ -305,6 +312,23 @@ fun LoginScreen(onLogin: () -> Unit, onRegister: () -> Unit, onForgotPassword: (
                         scope.launch {
                             if (puedeIngresar) {
 
+                                /**
+                                 * aqui lo que necesito almacenar son los datos de "sesion"
+                                 * del usuario logueado
+                                 * en un objeto ubicado el utils Globals.kt
+                                 **/
+                                Globals.userEmail = email
+                                Globals.userName = UserRepository.userName(email)
+
+                                val test1 = Globals.userName
+
+                                // Ver Logcat
+
+                                // forma opción 1
+                                println("El nombre es a): $test1")
+                                // forma opción 2
+                                println("El nomnre es b): ${Globals.userName}")
+
                                 // originalmente se uso toast pero en jatpack compose se usa este scaffolt
                                 // snackbarHostState.showSnackbar("Inicio de sesión exitoso")
 
@@ -327,32 +351,66 @@ fun LoginScreen(onLogin: () -> Unit, onRegister: () -> Unit, onForgotPassword: (
                     // NOTA: Si hay errores, no se ejecuta onLogin() y los errores se muestran automáticamente
                     // gracias a que showErrors = true y la revalidación actualiza los estados de error
                 },
-
-                // DISEÑO Y LAYOUT
-                // modifier: Hace que el botón ocupe todo el ancho disponible
-                // Esto crea una apariencia más prominente y fácil de tocar en móviles
-                modifier = Modifier.fillMaxWidth(),
-
+                //  modifier = Modifier.fillMaxWidth()
+                modifier = Modifier
+                    .fillMaxWidth()
+                    .height(64.dp)
+                    .semantics { contentDescription = "Botón iniciar sesión" },
                 // CONTROL DE ESTADO HABILITADO/DESHABILITADO
                 // enabled: Controla si el botón está activo o inactivo
                 // Solo se habilita cuando AMBOS campos tienen contenido (no vacíos)
                 // Esto previene clics innecesarios cuando obviously faltan datos
-                enabled = email.isNotEmpty() && password.isNotEmpty()
-
+                enabled = email.isNotEmpty() && password.isNotEmpty(),
+                shape = RoundedCornerShape(12.dp),
+                colors = ButtonDefaults.buttonColors(
+                    containerColor = MaterialTheme.colorScheme.primary,
+                    contentColor = MaterialTheme.colorScheme.onPrimary
+                ),
+                elevation = ButtonDefaults.buttonElevation(defaultElevation = 8.dp)
             ) {
-                // CONTENIDO DEL BOTÓN
-                // Texto simple y claro que indica la acción
                 Text("Iniciar Sesión", fontSize = BUTTON_TEXT.sp)
             }
 
+            Spacer(modifier = Modifier.height(16.dp))
+
             // botón registrarse
-            TextButton(onClick = onRegister) {
+
+            Button(
+                onClick = onRegister,
+                modifier = Modifier
+                    .fillMaxWidth()
+                    .height(64.dp)
+                    .semantics { contentDescription = "Botón de registro" },
+                shape = RoundedCornerShape(12.dp),
+                colors = ButtonDefaults.buttonColors(
+                    containerColor = MaterialTheme.colorScheme.primary,
+                    contentColor = MaterialTheme.colorScheme.onPrimary
+                ),
+                elevation = ButtonDefaults.buttonElevation(defaultElevation = 8.dp)
+            ) {
                 Text("Registrarse", fontSize = BUTTON_TEXT.sp)
             }
-            // botón recuperar contraseña
-            TextButton(onClick = onForgotPassword) {
+
+            Spacer(modifier = Modifier.height(16.dp))
+
+            // Cambio de boton
+
+            Button(
+                onClick = onForgotPassword,
+                modifier = Modifier
+                    .fillMaxWidth()
+                    .height(64.dp)
+                    .semantics { contentDescription = "Botón olvidé mi contraseña" },
+                shape = RoundedCornerShape(12.dp),
+                colors = ButtonDefaults.buttonColors(
+                    containerColor = MaterialTheme.colorScheme.primary,
+                    contentColor = MaterialTheme.colorScheme.onPrimary
+                ),
+                elevation = ButtonDefaults.buttonElevation(defaultElevation = 8.dp)
+            ) {
                 Text("Olvidé mi contraseña", fontSize = BUTTON_TEXT.sp)
             }
+
 
         }
 

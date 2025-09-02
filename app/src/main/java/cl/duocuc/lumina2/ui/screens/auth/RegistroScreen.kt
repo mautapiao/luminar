@@ -10,7 +10,9 @@ import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.height
 import androidx.compose.foundation.layout.padding
+import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.material3.Button
+import androidx.compose.material3.ButtonDefaults
 import androidx.compose.material3.Checkbox
 import androidx.compose.material3.DropdownMenuItem
 import androidx.compose.material3.ExperimentalMaterial3Api
@@ -37,6 +39,7 @@ import androidx.compose.ui.unit.sp
 import cl.duocuc.lumina2.data.model.User
 import cl.duocuc.lumina2.data.repository.UserRepository
 import cl.duocuc.lumina2.ui.screens.lumina.SimpleTopBar
+import cl.duocuc.lumina2.ui.theme.FontSizes.BUTTON_TEXT
 import cl.duocuc.lumina2.ui.theme.FontSizes.BUTTON_TEXT_LABEL
 import cl.duocuc.lumina2.ui.theme.FontSizes.TEXT_SIZE_INPUT
 import kotlinx.coroutines.launch
@@ -94,7 +97,7 @@ fun RegistroScreen(onRegisterDone: () -> Unit, onBack: () -> Unit) {
             // entrada del campo email
             OutlinedTextField(
                 value = email,
-                onValueChange = { email = it },
+                onValueChange = { email = it.lowercase() },
                 label = { Text("Correo electrónico", fontSize = BUTTON_TEXT_LABEL.sp) },
                 modifier = Modifier.fillMaxWidth(),
                 textStyle = LocalTextStyle.current.copy(fontSize = TEXT_SIZE_INPUT.sp)
@@ -165,13 +168,53 @@ fun RegistroScreen(onRegisterDone: () -> Unit, onBack: () -> Unit) {
                     checked = aceptarTerminos,
                     onCheckedChange = { aceptarTerminos = it }
                 )
-                Text("Acepto los términos y condiciones")
+                Text("Acepto los términos y condiciones", style = MaterialTheme.typography.headlineMedium)
             }
 
             // espacio entre elementos
             Spacer(Modifier.height(20.dp))
 
-            // boton Registrarse, todos los campos son requeridos
+//            // boton Registrarse, todos los campos son requeridos
+//            Button(
+//                onClick = {
+//
+//                    // INICIO DE LA VALIDACIÓN
+//                    if (nombre.isBlank() || email.isBlank() || password.isBlank() || pais.isBlank()) {
+//                        // si algún campo está vacío o solo tiene espacios en blanco
+//                        scope.launch {
+//                            snackbarHostState.showSnackbar("Por favor, completa todos los campos")
+//                        }
+//                        return@Button // detenemos la ejecución aquí
+//                    }
+//                    // FIN DE LA VALIDACIÓN
+//
+//                    // creamos el objeto usurio
+//                    val nuevoUsuario = User(
+//                        name = nombre,
+//                        email = email,
+//                        password = password,
+//                        country = pais
+//                    )
+//                    // registramos y esperamos el resultado
+//                    val registrado = UserRepository.register(nuevoUsuario)
+//
+//                    scope.launch {
+//                        if (registrado) {
+//                            snackbarHostState.showSnackbar("Usuario registrado con éxito")
+//
+//                            onRegisterDone() // acción de callback por ejemplo navegar a otra pantalla
+//                        } else {
+//                            snackbarHostState.showSnackbar("El correo ya existe")
+//                        }
+//                    }
+//                },
+//                modifier = Modifier.fillMaxWidth(),
+//                enabled = aceptarTerminos
+//            ) {
+//                Text("Registrarse", fontSize = 18.sp)
+//            }
+
+
             Button(
                 onClick = {
 
@@ -205,11 +248,21 @@ fun RegistroScreen(onRegisterDone: () -> Unit, onBack: () -> Unit) {
                         }
                     }
                 },
-                modifier = Modifier.fillMaxWidth(),
-                enabled = aceptarTerminos
+                //  modifier = Modifier.fillMaxWidth()
+                modifier = Modifier
+                    .fillMaxWidth()
+                    .height(64.dp),
+                enabled = aceptarTerminos,
+                shape = RoundedCornerShape(12.dp),
+                colors = ButtonDefaults.buttonColors(
+                    containerColor = MaterialTheme.colorScheme.primary,
+                    contentColor = MaterialTheme.colorScheme.onPrimary
+                ),
+                elevation = ButtonDefaults.buttonElevation(defaultElevation = 8.dp)
             ) {
-                Text("Registrarse", fontSize = 18.sp)
+                Text("Registrarse", fontSize = BUTTON_TEXT.sp)
             }
+
 
         }
     }

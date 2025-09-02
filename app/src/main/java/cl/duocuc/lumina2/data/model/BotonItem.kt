@@ -5,7 +5,7 @@ import androidx.compose.ui.graphics.vector.ImageVector
 data class BotonItem(
     val icono: ImageVector,
     val titulo: String,
-    val fecha: String,
+    val descripcion: String,
     val color: Color,
     val destino: String
 )

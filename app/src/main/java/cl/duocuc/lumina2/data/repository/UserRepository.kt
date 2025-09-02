@@ -37,6 +37,13 @@ object UserRepository {
         return user?.password == password
     }
 
+    // retornar el nombre del usuario
+    fun userName(email: String): String? {
+        val user = users.find { it.email.equals(email, ignoreCase = true) }
+        return user?.name
+    }
+
+
     // modo de uso
     // val puedeIngresar = UserRepository.login("ana@demo.com", "123456")
     // if (puedeIngresar) {

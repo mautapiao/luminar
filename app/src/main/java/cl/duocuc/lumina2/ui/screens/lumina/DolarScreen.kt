@@ -15,7 +15,7 @@ fun DolarScreen(navController: NavHostController, indicator: ChileIndicators) {
         titulo = "Dólar",
         valor = indicator.dolar,
         descripcion = "Dólar Observado",
-        color = Color(0xFFFF9800),
+        color = Color(0xFF0B1D13),
         onBack = { navController.popBackStack() }
     )
 }

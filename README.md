@@ -9,76 +9,51 @@
 
 - Para todos clave: 123456
 
-# Actividad Sumativa 1: Iniciando la creación de una aplicación móvil con Android Studio
+## Revisar 
+
+- utils -> Globals (variables globales)
+- utils -> Helpers (funciones globales)
+- Olvidé mi contraseña (algunas funciones y validaciones)
+- Calculadora (minimalista)
+- Info (acerca de la app)
 
 ## Descripción de la actividad
 
-En esta segunda semana, se realizará la **actividad sumativa 1**, de manera individual, que se llama: **"Iniciando la creación de una aplicación móvil con Android Studio"**. Los estudiantes deberán comenzar a crear una app a través del framework Android Studio, incorporando los componentes UI y la navegación entre las views, con una entrega de encargo de la documentación del desarrollo y código del proyecto comprimido en un ZIP.
+En esta tercera semana, se realizará la **actividad formativa 2**, llamada  
+*Explorando Kotlin para el desarrollo de una aplicación móvil*, donde deberás identificar  
+y aplicar la sintaxis del lenguaje de programación Kotlin en una aplicación móvil.
 
 ---
 
-## Instrucciones específicas
+## Características del producto
 
-A continuación, se detallan las instrucciones y requisitos de la actividad sumativa 1. Deberás leer cada uno de ellos y apuntar al cumplimiento.
-
-### Características del producto:
-
-- **Realizar una aplicación móvil de accesibilidad** para personas con discapacidad sensorial visual, desarrollada con los lenguajes de programación Android.
-
-- **La aplicación móvil deberá ser diseñada** con componentes UI específicamente para personas con discapacidad sensorial visual, facilitando a los usuarios su comunicación (escribir y leer) en su entorno cotidiano, mejorando su calidad de vida al transformar sus dispositivos móviles en una herramienta que los integra al mundo real y digital.
-
-### Requerimientos generales:
-
-Para el desarrollo de la entrega solicitada considerar los siguientes aspectos:
-
-- **Diseño de interfaz intuitiva** y centrada en la experiencia del usuario. Para ello considera el desarrollo de las views:
-    - Login
-    - Registro de usuario
-    - Recuperar contraseña
-
-- Las views deberán integrar los **componentes UI de Material Design y Jetpack Compose**:
-    - Input
-    - Botones
-    - Tablas
-    - Grillas
-    - Vínculos
-    - Textos
-    - Combo box
-    - Check list
-    - Radio buttons
-
-- Además, deberá contemplar un **array que almacene los datos** desde la view de Registro, de **5 usuarios** con sus respectivas contraseñas de acceso.
-
-### Requerimientos técnicos
-
-- Desarrollar la aplicación con el **Framework Android Studio**
-- **Generar y compartir** el repositorio Git del proyecto
-- **Integrar los componentes UI** de Material Design y Jetpack Compose
+- Adaptar al lenguaje de programación Kotlin la aplicación móvil que facilita una minuta nutricional semanal de recetas, desarrollada en la experiencia de aprendizaje 1 (actividad formativa 1).
+- La aplicación móvil se diseñará con componentes UI específicamente para usuarios de baja habilidad informática, facilitando la usabilidad en el acceso a cada receta que la aplicación sugiera.
 
 ---
 
-## Entrega de encargo con documentación
+## Requerimientos generales
 
-Esta actividad tendrá **dos partes** y se entregará todo en **un solo ZIP**.
+Para el desarrollo de la entrega solicitada, deberás considerar los siguientes aspectos:
 
-### Primera parte
-Una vez desarrollado el proyecto desde Android Studio, se deberá **comprimir la carpeta del código del proyecto completo** en formato .zip desde Git y adjuntarlo en espacio indicado en el AVA.
-
-### Segunda parte
-Se deberá **documentar todo el proceso de desarrollo** del proyecto describiendo:
-
-- El alcance
-- Los mockups
-- El rendimiento de las views diseñadas
-- Restricciones
-- Identificar **5 riesgos técnicos del proyecto**, según el avance solicitado
-
-**En este mismo documento de formato de respuesta, a continuación de estas instrucciones** y subirlo en el ZIP que entregarás con el desarrollo del Proyecto. Este documento del formato de respuesta debe subirse en **formato PDF**.
+- Implementación del lenguaje de programación Kotlin en cada componente UI de *Material Design* y *Jetpack Compose* integrado en la entrega de la experiencia de aprendizaje 1 (input, botones, tablas, grillas, vínculos, textos, combo box, check list y radio buttons).
 
 ---
 
-## Formato de entrega
+## Requerimientos técnicos
 
-- **Archivo ZIP único** conteniendo:
-    1. Proyecto completo de Android Studio
-    2. Documentación en formato PDF
+- Desarrollar la aplicación con el Framework **Android Studio**.
+- Generar y compartir el **repositorio Git** del proyecto.
+- Integrar el lenguaje de programación **Kotlin** al código fuente de la app móvil.
+
+---
+
+## Requerimientos en esta entrega
+
+- La aplicación móvil debe ser adaptativa a múltiples dispositivos Android que cuenten con una conexión activa a internet.
+
+---
+
+## Entrega del encargo
+
+- Una vez desarrollado el proyecto desde Android Studio, se deberá comprimir la carpeta del código del proyecto completo en formato `.zip` desde Git y enviarlo en forma digital al docente por la actividad habilitada en AVA.
