@@ -9,19 +9,46 @@
 
 - Para todos clave: 123456
 
+## Generador de contraseñas
+
+Clase: BasePasswordGenerator, StrongPasswordGenerator.
+Objeto: simpleGen, strongGen.
+Método: generate().
+Propiedad: length.
+Constructor: (8) o (12).
+Herencia: StrongPasswordGenerator hereda de BasePasswordGenerator.
+Interfaces: PasswordGenerator define el contrato.
+Polimorfismo: simpleGen y strongGen son del tipo PasswordGenerator, pero generan contraseñas distintas.
+
+## Generador de contraseñas
+
+ui/screens/lumina/info.kt 
+
+## Nota
+
+Se cumple con lo solicitado en cuanto a aplicar POO, 
+incorporando clases, herencia, interfaces y polimorfismo. 
+Sin embargo, queda la duda de cuándo es realmente necesario aplicar POO
+y cuándo no, ya que en ejercicios pequeños, como un generador de contraseñas,
+el uso de POO puede llegar a complicar más que ayudar.
+Aun así, se trató de implementar los conceptos de la mejor manera posible.
+
+
 ## Revisar 
 
 - utils -> Globals (variables globales)
 - utils -> Helpers (funciones globales)
 - Olvidé mi contraseña (algunas funciones y validaciones)
 - Calculadora (minimalista)
-- Info (acerca de la app)
+- Pass Generación de contraseñas, relacionado a lo solcitado
 
 ## Descripción de la actividad
 
-En esta tercera semana, se realizará la **actividad formativa 2**, llamada  
-*Explorando Kotlin para el desarrollo de una aplicación móvil*, donde deberás identificar  
-y aplicar la sintaxis del lenguaje de programación Kotlin en una aplicación móvil.
+En esta cuarta semana, se realizará la actividad formativa 3, 
+llamada "Integrando funcionalidades básicas a una aplicación 
+móvil con Kotlin" donde deberán implementar funcionalidades 
+básicas del lenguaje de programación Kotlin en una aplicación
+móvil, a partir de un código real.
 
 ---
 

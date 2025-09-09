@@ -44,6 +44,9 @@ import cl.duocuc.lumina2.ui.theme.FontSizes.BUTTON_TEXT_LABEL
 import cl.duocuc.lumina2.ui.theme.FontSizes.TEXT_SIZE_INPUT
 import kotlinx.coroutines.launch
 import androidx.compose.ui.semantics.contentDescription
+import cl.duocuc.lumina2.data.interfaces.PasswordGenerator
+import cl.duocuc.lumina2.data.model.BasePasswordGenerator
+import cl.duocuc.lumina2.data.model.StrongPasswordGenerator
 import cl.duocuc.lumina2.utils.Globals
 
 
@@ -327,7 +330,26 @@ fun LoginScreen(onLogin: () -> Unit, onRegister: () -> Unit, onForgotPassword: (
                                 // forma opción 1
                                 println("El nombre es a): $test1")
                                 // forma opción 2
-                                println("El nomnre es b): ${Globals.userName}")
+                                println("El nombre es b): ${Globals.userName}")
+
+                                // seguridad
+
+                                println("Password: ${UserRepository.userPasswordSecurity(email)}")
+
+                                println("Info: ${UserRepository.userInfo(email)}")
+
+                                // OBJETOS
+                                // Crear un generador básico (hereda de la clase base)
+                                val simpleGen =
+                                    BasePasswordGenerator(8)   // polimorfismo con interfaz
+
+                                // Crear un generador básico (hereda de la clase base)
+                                val strongGen = StrongPasswordGenerator(12)
+
+                                println("Contraseña simple: ${simpleGen.generate()}")
+                                println("Contraseña fuerte: ${strongGen.generate()}")
+
+
 
                                 // originalmente se uso toast pero en jatpack compose se usa este scaffolt
                                 // snackbarHostState.showSnackbar("Inicio de sesión exitoso")

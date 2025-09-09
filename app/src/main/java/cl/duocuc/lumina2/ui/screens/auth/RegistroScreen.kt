@@ -32,7 +32,6 @@ import androidx.compose.runtime.remember
 import androidx.compose.runtime.rememberCoroutineScope
 import androidx.compose.runtime.setValue
 import androidx.compose.ui.Modifier
-import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.text.input.PasswordVisualTransformation
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
@@ -168,7 +167,10 @@ fun RegistroScreen(onRegisterDone: () -> Unit, onBack: () -> Unit) {
                     checked = aceptarTerminos,
                     onCheckedChange = { aceptarTerminos = it }
                 )
-                Text("Acepto los términos y condiciones", style = MaterialTheme.typography.headlineMedium)
+                Text(
+                    "Acepto los términos y condiciones",
+                    style = MaterialTheme.typography.headlineMedium
+                )
             }
 
             // espacio entre elementos

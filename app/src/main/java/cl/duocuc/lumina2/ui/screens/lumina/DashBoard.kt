@@ -12,12 +12,15 @@ import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.lazy.grid.GridCells
 import androidx.compose.foundation.lazy.grid.LazyVerticalGrid
 import androidx.compose.foundation.lazy.grid.items
+import androidx.compose.foundation.rememberScrollState
+import androidx.compose.foundation.verticalScroll
 import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.filled.AccountBalance
 import androidx.compose.material.icons.filled.Calculate
 import androidx.compose.material.icons.filled.CurrencyExchange
 import androidx.compose.material.icons.filled.Info
 import androidx.compose.material.icons.filled.Paid
+import androidx.compose.material.icons.filled.Password
 import androidx.compose.material.icons.filled.TrendingUp
 import androidx.compose.material3.Scaffold
 import androidx.compose.material3.Text
@@ -76,8 +79,8 @@ fun DashboardScreen(
             destino = "calc"
         ),
         BotonItem(
-            icono = Icons.Default.Info,
-            titulo = "INFO",
+            icono = Icons.Default.Password,
+            titulo = "PASS",
             descripcion = "Acerca de...",
             color = Color(0xFF2E5339), // azul
             destino = "info"
@@ -98,16 +101,6 @@ fun DashboardScreen(
         ) {
             // espacio entre elementos
             Spacer(modifier = Modifier.height(85.dp))
-
-            // Título
-//            Text(
-//                text = "Indicadores Económicos",
-//                fontSize = 28.sp,
-//                fontWeight = FontWeight.Bold,
-//                color = Color.White,
-//                textAlign = TextAlign.Center,
-//                modifier = Modifier.fillMaxWidth()
-//            )
 
             // fecha actual utils getCurrentDate()
             Text(
@@ -138,19 +131,6 @@ fun DashboardScreen(
                 }
             }
 
-            // espacio entre elementos
-            Spacer(modifier = Modifier.weight(1f))
-
-            // Texto de ayuda para accesibilidad
-//            Text(
-//                text = "Toca cualquier botón para ver los valores actualizados",
-//                fontSize = 26.sp,
-//                color = Color.Gray,
-//                textAlign = TextAlign.Center,
-//                modifier = Modifier
-//                    .fillMaxWidth()
-//                    .padding(bottom = 16.dp)
-//            )
         }
     }
 }

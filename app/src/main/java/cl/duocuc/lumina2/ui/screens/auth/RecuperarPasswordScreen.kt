@@ -44,9 +44,11 @@ fun RecuperarPasswordScreen(onBack: () -> Unit) {
                 .padding(16.dp)
         ) {
             // espacio que ayuda que no quede debajo de la topbar
-            Spacer(Modifier
-                .height(85.dp)
-                .fillMaxWidth())
+            Spacer(
+                Modifier
+                    .height(85.dp)
+                    .fillMaxWidth()
+            )
 
             // texto adecuado para la lectura
             Text("Recuperar contraseña", style = MaterialTheme.typography.headlineMedium)
@@ -62,7 +64,7 @@ fun RecuperarPasswordScreen(onBack: () -> Unit) {
                 textStyle = LocalTextStyle.current.copy(fontSize = TEXT_SIZE_INPUT.sp),
                 modifier = Modifier.fillMaxWidth(),
 
-            )
+                )
 
             Spacer(Modifier.height(26.dp))
 
@@ -107,8 +109,11 @@ fun RecuperarPasswordScreen(onBack: () -> Unit) {
                 ),
                 elevation = ButtonDefaults.buttonElevation(defaultElevation = 8.dp)
             ) {
-               // Text("ENVIAR LINK", fontSize = BUTTON_TEXT.sp)
-                Text(if (linkEnviado) "REVISE SU EMAIL" else "ENVIAR LINK", fontSize = BUTTON_TEXT.sp)
+                // Text("ENVIAR LINK", fontSize = BUTTON_TEXT.sp)
+                Text(
+                    if (linkEnviado) "REVISE SU EMAIL" else "ENVIAR LINK",
+                    fontSize = BUTTON_TEXT.sp
+                )
             }
 
             Spacer(Modifier.height(16.dp))
@@ -143,8 +148,6 @@ fun RecuperarPasswordScreen(onBack: () -> Unit) {
                 }
             }
         }
-
-
 
 
     }
