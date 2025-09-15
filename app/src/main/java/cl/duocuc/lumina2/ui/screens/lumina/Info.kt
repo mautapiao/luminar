@@ -19,8 +19,8 @@ import androidx.compose.ui.unit.sp
 import androidx.compose.material3.Button
 import androidx.compose.ui.Alignment
 import cl.duocuc.lumina2.data.interfaces.PasswordGenerator
-import cl.duocuc.lumina2.data.model.BasePasswordGenerator
-import cl.duocuc.lumina2.data.model.StrongPasswordGenerator
+import cl.duocuc.lumina2.utils.BasePasswordGenerator
+import cl.duocuc.lumina2.utils.StrongPasswordGenerator
 import cl.duocuc.lumina2.data.repository.UserRepository
 import cl.duocuc.lumina2.utils.Globals
 

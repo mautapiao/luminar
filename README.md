@@ -26,13 +26,29 @@ ui/screens/lumina/info.kt
 
 ## Nota
 
-Se cumple con lo solicitado en cuanto a aplicar POO, 
-incorporando clases, herencia, interfaces y polimorfismo. 
-Sin embargo, queda la duda de cuándo es realmente necesario aplicar POO
-y cuándo no, ya que en ejercicios pequeños, como un generador de contraseñas,
-el uso de POO puede llegar a complicar más que ayudar.
-Aun así, se trató de implementar los conceptos de la mejor manera posible.
+Se cumple con lo solicitado en cuanto a aplicar los senetencias solicitadas, 
+la mayoría de ellas se realiza en AnalisisScreen.kt, se refactorizo IndicatorScreen.kt
+de tal forma que existe solo un compose para visualizar los indicadores:
 
+Dashboard -> BotonCard -> (BotonMenuData) -> BotonCard.kt -> MyApp.kt( rutas )
+ 
+Existen dos tipo de botones de menú: los indicadores que utilizan  un parametro en la ruta y 
+las rutas "estaticas" donde cada "boton" es un módulo como : Calculadora.
+
+AnalisisScreen: se puede visualizar los diferentes análisis de información relacionada
+a los indicadores económicos y se hace uso de :
+
+- Funciones de orden superior
+- Filter
+- Funciones inline
+- Lambdas
+- Lambda con etiqueta
+- Funciones de extensión
+- Propiedades de extensión
+- Excepciones
+- Try/Catch
+
+(EjemplosData, Hepers)
 
 ## Revisar 
 
@@ -41,29 +57,40 @@ Aun así, se trató de implementar los conceptos de la mejor manera posible.
 - Olvidé mi contraseña (algunas funciones y validaciones)
 - Calculadora (minimalista)
 - Pass Generación de contraseñas, relacionado a lo solcitado
+- Análisis de indicadores económicos
 
 ## Descripción de la actividad
 
-En esta cuarta semana, se realizará la actividad formativa 3, 
-llamada "Integrando funcionalidades básicas a una aplicación 
-móvil con Kotlin" donde deberán implementar funcionalidades 
-básicas del lenguaje de programación Kotlin en una aplicación
-móvil, a partir de un código real.
+En esta quinta semana, se realizará la actividad sumativa 2, llamada 
+"Integrando Kotlin a la aplicación móvil con Android Studio", 
+donde deberán integrar a la app creada en el framework Android Studio,
+las funcionalidades básicas y avanzadas del lenguaje de programación Kotlin,
+con una entrega de encargo que contenga la documentación del desarrollo y 
+código del proyecto comprimido en ZIP.
 
 ---
 
 ## Características del producto
 
-- Adaptar al lenguaje de programación Kotlin la aplicación móvil que facilita una minuta nutricional semanal de recetas, desarrollada en la experiencia de aprendizaje 1 (actividad formativa 1).
-- La aplicación móvil se diseñará con componentes UI específicamente para usuarios de baja habilidad informática, facilitando la usabilidad en el acceso a cada receta que la aplicación sugiera.
+- Adaptar al lenguaje de programación Kotlin la aplicación móvil de accesibilidad
+  para personas con discapacidad sensorial visual desarrollada en la experiencia de aprendizaje 1.
+- La aplicación móvil deberá ser desarrollada específicamente para personas 
+  con discapacidad sensorial visual, facilitando a los usuarios su comunicación 
+  (escribir y leer) en su entorno cotidiano, mejorando su calidad de vida al transformar 
+  sus dispositivos móviles en una herramienta que los integra al mundo real y digital.
 
 ---
 
 ## Requerimientos generales
 
-Para el desarrollo de la entrega solicitada, deberás considerar los siguientes aspectos:
+Para el desarrollo de la entrega solicitada considerar los siguientes aspectos:
 
-- Implementación del lenguaje de programación Kotlin en cada componente UI de *Material Design* y *Jetpack Compose* integrado en la entrega de la experiencia de aprendizaje 1 (input, botones, tablas, grillas, vínculos, textos, combo box, check list y radio buttons).
+- Implementación el lenguaje de programación Kotlin en cada componente UI de Material
+  Design y Jetpack Compose integrado en entrega de la experiencia de aprendizaje 1
+  (input, botones, tablas, grillas, vínculos, textos, combo box, check list y radio buttons).
+  Adaptar las views de Login, Registro y Recuperar contraseña al lenguaje de programación Kotlin.
+- Generar un array en Kotlin que almacene los datos de 5 usuarios y sus contraseñas, 
+  registrados previamente desde el formulario de la view de Registro.
 
 ---
 

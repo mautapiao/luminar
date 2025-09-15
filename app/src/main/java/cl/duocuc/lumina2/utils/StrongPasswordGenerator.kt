@@ -1,4 +1,4 @@
-package cl.duocuc.lumina2.data.model
+package cl.duocuc.lumina2.utils
 
 // CLASE HIJA: Agrega simbolos especiales
 // Sobreescribe el metodo generate para hacer contraseñas más seguras

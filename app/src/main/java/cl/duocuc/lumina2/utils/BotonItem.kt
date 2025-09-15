@@ -1,3 +1,5 @@
+package cl.duocuc.lumina2.utils
+
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.graphics.vector.ImageVector
 

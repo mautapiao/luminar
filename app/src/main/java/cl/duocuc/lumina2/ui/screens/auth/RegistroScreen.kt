@@ -41,6 +41,8 @@ import cl.duocuc.lumina2.ui.screens.lumina.SimpleTopBar
 import cl.duocuc.lumina2.ui.theme.FontSizes.BUTTON_TEXT
 import cl.duocuc.lumina2.ui.theme.FontSizes.BUTTON_TEXT_LABEL
 import cl.duocuc.lumina2.ui.theme.FontSizes.TEXT_SIZE_INPUT
+import cl.duocuc.lumina2.utils.validarCorreo
+import cl.duocuc.lumina2.utils.validarPassword
 import kotlinx.coroutines.launch
 
 
@@ -176,64 +178,40 @@ fun RegistroScreen(onRegisterDone: () -> Unit, onBack: () -> Unit) {
             // espacio entre elementos
             Spacer(Modifier.height(20.dp))
 
-//            // boton Registrarse, todos los campos son requeridos
-//            Button(
-//                onClick = {
-//
-//                    // INICIO DE LA VALIDACIÓN
-//                    if (nombre.isBlank() || email.isBlank() || password.isBlank() || pais.isBlank()) {
-//                        // si algún campo está vacío o solo tiene espacios en blanco
-//                        scope.launch {
-//                            snackbarHostState.showSnackbar("Por favor, completa todos los campos")
-//                        }
-//                        return@Button // detenemos la ejecución aquí
-//                    }
-//                    // FIN DE LA VALIDACIÓN
-//
-//                    // creamos el objeto usurio
-//                    val nuevoUsuario = User(
-//                        name = nombre,
-//                        email = email,
-//                        password = password,
-//                        country = pais
-//                    )
-//                    // registramos y esperamos el resultado
-//                    val registrado = UserRepository.register(nuevoUsuario)
-//
-//                    scope.launch {
-//                        if (registrado) {
-//                            snackbarHostState.showSnackbar("Usuario registrado con éxito")
-//
-//                            onRegisterDone() // acción de callback por ejemplo navegar a otra pantalla
-//                        } else {
-//                            snackbarHostState.showSnackbar("El correo ya existe")
-//                        }
-//                    }
-//                },
-//                modifier = Modifier.fillMaxWidth(),
-//                enabled = aceptarTerminos
-//            ) {
-//                Text("Registrarse", fontSize = 18.sp)
-//            }
-
-
             Button(
                 onClick = {
 
                     // INICIO DE LA VALIDACIÓN
-                    if (nombre.isBlank() || email.isBlank() || password.isBlank() || pais.isBlank()) {
+                    if (nombre.isBlank() || email.isBlank() || password.isBlank() || paisSelected.isBlank()) {
                         // si algún campo está vacío o solo tiene espacios en blanco
                         scope.launch {
                             snackbarHostState.showSnackbar("Por favor, completa todos los campos")
                         }
                         return@Button // detenemos la ejecución aquí
                     }
+
+                    // Se agrego validación utils/Helpers.kt
+                    if(!validarCorreo(email)){
+                        scope.launch {
+                            snackbarHostState.showSnackbar("Correo inválido")
+                        }
+                        return@Button
+                    }
+
+                    if(!validarPassword(password)){
+                        scope.launch {
+                            snackbarHostState.showSnackbar("Largo password mayor a 6")
+                        }
+                        return@Button
+                    }
+
+
                     // FIN DE LA VALIDACIÓN
 
                     // creamos el objeto usurio
                     val nuevoUsuario = User(
                         name = nombre,
-                        email = email,
+                        email = email.trim(),
                         password = password,
                         country = pais
                     )

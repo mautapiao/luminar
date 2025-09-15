@@ -1,6 +1,5 @@
 package cl.duocuc.lumina2.ui.screens.lumina
 
-import BotonItem
 import androidx.compose.foundation.background
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Column
@@ -12,28 +11,18 @@ import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.lazy.grid.GridCells
 import androidx.compose.foundation.lazy.grid.LazyVerticalGrid
 import androidx.compose.foundation.lazy.grid.items
-import androidx.compose.foundation.rememberScrollState
-import androidx.compose.foundation.verticalScroll
-import androidx.compose.material.icons.Icons
-import androidx.compose.material.icons.filled.AccountBalance
-import androidx.compose.material.icons.filled.Calculate
-import androidx.compose.material.icons.filled.CurrencyExchange
-import androidx.compose.material.icons.filled.Info
-import androidx.compose.material.icons.filled.Paid
-import androidx.compose.material.icons.filled.Password
-import androidx.compose.material.icons.filled.TrendingUp
 import androidx.compose.material3.Scaffold
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
-import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import androidx.navigation.NavHostController
 import androidx.navigation.compose.rememberNavController
+import cl.duocuc.lumina2.data.BotonMenuData
 import cl.duocuc.lumina2.utils.getCurrentDate
 
 @Composable
@@ -41,55 +30,29 @@ fun DashboardScreen(
     navController: NavHostController, // recibe el navController como parametro
     onBack: () -> Unit
 ) {
-
-    val botones = listOf(
-        BotonItem(
-            icono = Icons.Default.Paid,
-            titulo = "UF",
-            descripcion = "Unidad de Fomento",
-            color = Color(0xFF4CAF50), // Verde
-            destino = "uf"
-        ),
-        BotonItem(
-            icono = Icons.Default.TrendingUp,
-            titulo = "IPC",
-            descripcion = "Índice Precios",
-            color = Color(0xFF2196F3), // Azul
-            destino = "ipc"
-        ),
-        BotonItem(
-            icono = Icons.Default.AccountBalance,
-            titulo = "UTM",
-            descripcion = "Unidad Tributaria",
-            color = Color(0xFF9C27B0), // Morado
-            destino = "utm"
-        ),
-        BotonItem(
-            icono = Icons.Default.CurrencyExchange,
-            titulo = "DÓLAR",
-            descripcion = "Valor del Dólar",
-            color = Color(0xFF0B1D13), // Naranja
-            destino = "dolar"
-        ),
-        BotonItem(
-            icono = Icons.Default.Calculate,
-            titulo = "CALC",
-            descripcion = "Calculadora",
-            color = Color(0xFF0D1B2A), // azul
-            destino = "calc"
-        ),
-        BotonItem(
-            icono = Icons.Default.Password,
-            titulo = "PASS",
-            descripcion = "Acerca de...",
-            color = Color(0xFF2E5339), // azul
-            destino = "info"
-        )
-    )
+    // listOf(botones) son datos de configuración dara/BotonMenuData
+    val botones = BotonMenuData.botones
+    /**
+     * Scaffold es un componente de Jetpack Compose que proporciona la estructura
+     * básica de una pantalla Material Design.
+     * Descripción: Define el layout principal de la pantalla con slots para
+     * elementos comunes como barra superior, barra inferior, botón flotante
+     * y contenido principal, aplicando automáticamente el padding apropiado
+     * entre componentes.
+     **/
 
     Scaffold(
+        // topBar es un parámetro slot del Scaffold que define la barra superior de la pantalla.
         topBar = { SimpleTopBar(title = "Cerrar", showBack = true, onBack = onBack) }
-    ) { padding ->
+    ) {
+
+        // padding es un parámetro lambda que recibe los valores de padding calculados
+        // automáticamente por el Scaffold.
+        // Contiene las dimensiones de espaciado (top, bottom, start, end)
+        // que el Scaffold genera para evitar que el contenido se superponga con elementos
+        // como la topBar, bottomBar
+
+            padding ->
 
         // Fondo casi negro
         Column(
@@ -98,8 +61,9 @@ fun DashboardScreen(
                 .background(Color(0xFF121212)) // Fondo casi negro
                 .padding(16.dp),
             verticalArrangement = Arrangement.spacedBy(20.dp)
+
         ) {
-            // espacio entre elementos
+            // Espacio entre elementos
             Spacer(modifier = Modifier.height(85.dp))
 
             // fecha actual utils getCurrentDate()
@@ -111,17 +75,18 @@ fun DashboardScreen(
                 modifier = Modifier.fillMaxWidth()
             )
 
-            // espacio entre elementos
-            //Spacer(modifier = Modifier.height(5.dp))
-
             // Grid de botones 2x2
             LazyVerticalGrid(
                 columns = GridCells.Fixed(2),
                 horizontalArrangement = Arrangement.spacedBy(16.dp),
                 verticalArrangement = Arrangement.spacedBy(16.dp)
             ) {
+                // Lazy List Item Iteration
+                // Es una "función de iteración especializada para Compose"
+                // que se comporta como un bucle pero optimizado para UI reactiva.
+
                 items(botones) { boton ->
-                    // usa botonCard.kt
+                    // Usa botonCard.kt
                     BotonCard(
                         item = boton,
                         onClick = {
@@ -129,6 +94,8 @@ fun DashboardScreen(
                         }
                     )
                 }
+
+
             }
 
         }

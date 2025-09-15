@@ -1,4 +1,4 @@
-package cl.duocuc.lumina2.data.model
+package cl.duocuc.lumina2.utils
 
 import cl.duocuc.lumina2.data.interfaces.PasswordGenerator
 

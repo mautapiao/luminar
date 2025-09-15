@@ -22,7 +22,6 @@ import androidx.compose.material3.Scaffold
 import androidx.compose.material3.SnackbarHost
 import androidx.compose.material3.SnackbarHostState
 import androidx.compose.material3.Text
-import androidx.compose.material3.TextButton
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.getValue
 import androidx.compose.runtime.mutableStateOf
@@ -44,11 +43,9 @@ import cl.duocuc.lumina2.ui.theme.FontSizes.BUTTON_TEXT_LABEL
 import cl.duocuc.lumina2.ui.theme.FontSizes.TEXT_SIZE_INPUT
 import kotlinx.coroutines.launch
 import androidx.compose.ui.semantics.contentDescription
-import cl.duocuc.lumina2.data.interfaces.PasswordGenerator
-import cl.duocuc.lumina2.data.model.BasePasswordGenerator
-import cl.duocuc.lumina2.data.model.StrongPasswordGenerator
+import cl.duocuc.lumina2.utils.BasePasswordGenerator
+import cl.duocuc.lumina2.utils.StrongPasswordGenerator
 import cl.duocuc.lumina2.utils.Globals
-
 
 @Composable
 fun LoginScreen(onLogin: () -> Unit, onRegister: () -> Unit, onForgotPassword: () -> Unit) {
@@ -349,8 +346,6 @@ fun LoginScreen(onLogin: () -> Unit, onRegister: () -> Unit, onForgotPassword: (
                                 println("Contraseña simple: ${simpleGen.generate()}")
                                 println("Contraseña fuerte: ${strongGen.generate()}")
 
-
-
                                 // originalmente se uso toast pero en jatpack compose se usa este scaffolt
                                 // snackbarHostState.showSnackbar("Inicio de sesión exitoso")
 
@@ -378,10 +373,12 @@ fun LoginScreen(onLogin: () -> Unit, onRegister: () -> Unit, onForgotPassword: (
                     .fillMaxWidth()
                     .height(64.dp)
                     .semantics { contentDescription = "Botón iniciar sesión" },
+
                 // CONTROL DE ESTADO HABILITADO/DESHABILITADO
                 // enabled: Controla si el botón está activo o inactivo
                 // Solo se habilita cuando AMBOS campos tienen contenido (no vacíos)
                 // Esto previene clics innecesarios cuando obviously faltan datos
+
                 enabled = email.isNotEmpty() && password.isNotEmpty(),
                 shape = RoundedCornerShape(12.dp),
                 colors = ButtonDefaults.buttonColors(

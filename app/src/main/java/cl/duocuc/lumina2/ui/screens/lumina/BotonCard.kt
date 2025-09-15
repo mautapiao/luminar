@@ -1,6 +1,6 @@
 package cl.duocuc.lumina2.ui.screens.lumina
 
-import BotonItem
+import cl.duocuc.lumina2.utils.BotonItem
 import androidx.compose.foundation.clickable
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Column

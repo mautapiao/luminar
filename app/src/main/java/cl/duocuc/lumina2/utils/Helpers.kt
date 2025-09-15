@@ -1,5 +1,11 @@
 package cl.duocuc.lumina2.utils
 
+import cl.duocuc.lumina2.data.model.ChileIndicators
+import java.math.BigDecimal
+import java.text.DecimalFormat
+import java.text.DecimalFormatSymbols
+import java.util.Locale
+
 /**
  *
  * Aquí hay algunas funciones que pueden
@@ -96,3 +102,116 @@ fun runAllValidations(email: String): List<String> {
         validateRegex(email)
     )
 }
+
+fun validarCorreo(correo: String): Boolean {
+    return android.util.Patterns.EMAIL_ADDRESS.matcher(correo).matches()
+}
+
+fun validarPassword(password: String): Boolean {
+    return password.length >= 6
+}
+
+
+
+// Funciones Semana 5
+
+/*
+   1. Función de nivel superior
+      Es aquella que no está definida dentro de una clase, objeto o interfaz,
+      sino directamente en un archivo .kt
+
+      lista: List<ChileIndicators> Recibe una lista de objetos de tipo ChileIndicators.
+      map { it.uf.toDouble}: la lista clave valor toma el valor d ela uf que esta como BigDecimal
+                        y lo transforma a Double, average indica que debe ser doble
+      average: Cálcula el promedio de todos los valores de la lista.
+
+      Resumen: Es aquella que recibe funciones como parámetros o retorna funciones,
+               independientemente de dónde esté definida.
+
+ */
+fun promedioUF(lista: List<ChileIndicators>): String {
+
+    val promedio = lista.map { it.uf.toDouble() }.average()
+
+    val formatter = DecimalFormat("#.##", DecimalFormatSymbols(Locale.US))
+
+    return formatter.format(promedio)
+
+}
+
+/*
+ 2. Función de extensión
+    Es una funcion de extnsion por que agrega una nueva función del tipo List<...
+    como si fuera un metodo nativo de la clase
+    Se cambia la función original para retornar el valor formateado String
+
+    fun List<ChileIndicators>.promedioIPC() = this.map { it.ipc.toDouble() }.average()
+*/
+fun List<ChileIndicators>.promedioIPC(): String {
+
+    val promedio = this.map { it.ipc.toDouble() }.average()
+
+    val formatter = DecimalFormat("#.##", DecimalFormatSymbols(Locale.US))
+
+    return formatter.format(promedio)
+
+}
+
+/*
+    3. Propiedad de extensión
+
+    Consiste en agregar una propiedad al modelo
+
+    Para efectos practicos se dejo en este helper,
+    pero lo ideal es que este en extensions ChileIndicatorsExtensions.kt
+
+    En esta ejemplo valorReal es la suma de los tres valores del "primer" registro
+*/
+
+val ChileIndicators.valorReal:  BigDecimal
+    get() = uf + utm + dolar
+
+
+/*
+
+  4. Inline function
+
+  Obtiene en una funcion inline el tiempo en filtrar los datos
+
+ */
+inline fun medirTiempo(block: () -> Unit): String {
+    val inicio = System.currentTimeMillis()
+    block()
+    return "${System.currentTimeMillis() - inicio} ms"
+}
+
+// 5. Try-Catch
+fun parsearDolar(valor: String): Double {
+    return try {
+        valor.toDouble() // Intenta convertir String a Double
+    } catch (e: NumberFormatException) {
+        -1.0   // Si falla retorna -1.0
+    }
+}
+
+// 6.- Lambda con filtro
+// Esta línea se encuentra en EjemploData.tk
+// IndicatorRepository.indicators.filter { it.dolar > BigDecimal(930) }.joinToString { it.date }
+
+// 7.- Lambda con etiqueta
+// Esta línea se encuentra en EjemploData.tk @lit es una nombre cualquiera relacionado al lambda
+// para identificarlo
+// Un lambda con etiqueta es una lambda que tiene un nombre personalizado para identificar
+// específicamente a qué lambda debe retornar el return
+
+
+// 8.- For / if / Else
+// Esta línea se encuentra en EjemploData.tk
+// buildString: es una función inline de Kotlin que crea un StringBuilder internamente
+// y permite construir strings de manera eficiente.
+//
+// buildString: es la forma eficiente y limpia de construir strings complejos en Kotlin,
+// especialmente cuando se trabajan con bucles o lógica condicional etc
+
+// 9.- Do-While
+// Esta línea se encuentra en EjemploData.tk

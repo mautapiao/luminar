@@ -20,12 +20,13 @@ import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import cl.duocuc.lumina2.utils.getCurrentDate
+import java.math.BigDecimal
 
 // Composable reutilizable para pantallas indicadores
 @Composable
 fun PantallaIndicador(
     titulo: String,
-    valor: String,
+    valor: BigDecimal,
     descripcion: String,
     color: Color,
     onBack: () -> Unit = {}
@@ -79,7 +80,7 @@ fun PantallaIndicador(
 
                 // muestra el valor ej: $37.050,45
                 Text(
-                    text = valor,
+                    text = valor.toString(),
                     fontSize = 48.sp,
                     fontWeight = FontWeight.Bold,
                     color = Color.White

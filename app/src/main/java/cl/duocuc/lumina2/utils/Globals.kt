@@ -14,4 +14,6 @@ package cl.duocuc.lumina2.utils
 object Globals {
     var userEmail: String? = null
     var userName: String? = null
+
+    var authUser: Boolean? = false
 }

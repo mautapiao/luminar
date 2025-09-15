@@ -15,7 +15,6 @@ import androidx.compose.runtime.Composable
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.unit.sp
 
-
 // TopBar reutilizable (muestra botón "Atrás" cuando no estamos en Login)
 @OptIn(ExperimentalMaterial3Api::class)
 @Composable

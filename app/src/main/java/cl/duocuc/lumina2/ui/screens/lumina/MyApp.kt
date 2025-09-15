@@ -4,7 +4,6 @@ import androidx.compose.runtime.Composable
 import androidx.navigation.compose.NavHost
 import androidx.navigation.compose.composable
 import androidx.navigation.compose.rememberNavController
-import cl.duocuc.lumina2.data.local.FakeIndicators
 import cl.duocuc.lumina2.data.repository.UserRepository
 import cl.duocuc.lumina2.ui.screens.auth.LoginScreen
 import cl.duocuc.lumina2.ui.screens.auth.RecuperarPasswordScreen
@@ -13,6 +12,7 @@ import cl.duocuc.lumina2.utils.Globals
 
 @Composable
 fun MyApp() {
+
     val navController = rememberNavController()
 
     // cargo los 5 usuarios creados por defectos en el array modelo User repo User
@@ -64,39 +64,18 @@ fun MyApp() {
          * botones de opción con otro tipo de información
          *
          */
-        composable("uf") {
 
-            // fecha del dia
-            val todayIndicator = FakeIndicators.getTodayIndicator()
+        // La otra forma a la anterior ?: = "si es null, usa este otro valor".
 
-            // si la fecha es distinta a null enviar array
-            if (todayIndicator != null) {
-                UfScreen(navController, todayIndicator)
-            } else {
-                // último disponible o mensaje no deberia ocurrir
-                UfScreen(navController, FakeIndicators.indicators.last())
-            }
+        // Se optimizo esta sección pasando el parametro del indicador en la ruta
+        composable("indicador/{tipo}") { backStackEntry ->
 
+            val indicador = backStackEntry.arguments?.getString("tipo")
+
+            IndicatorScreen(navController, indicador ?: "No actualizado")
         }
 
-        //  la otra forma a la anterior ?: = "si es null, usa este otro valor".
-        composable("ipc") {
-            val todayIndicator = FakeIndicators.getTodayIndicator()
-            IpcScreen(navController, todayIndicator ?: FakeIndicators.indicators.last())
-        }
-        composable("utm") {
-            val todayIndicator = FakeIndicators.getTodayIndicator()
-            UtmScreen(navController, todayIndicator ?: FakeIndicators.indicators.last())
-        }
-        composable("dolar") {
-            val todayIndicator = FakeIndicators.getTodayIndicator()
-            DolarScreen(navController, todayIndicator ?: FakeIndicators.indicators.last())
-        }
-
-        // recfactorizar: una vez analizados que otros "widget" futuros son necesarios,
-        // lo anterior podria quedar en una sola composable donde se envie el indicador
-        // como variable. ejemplo: composable( "indicador/{nombre_indicador}",
-
+        // otras opciones que no son indicadores
         composable("calc") {
             Calculadora (onBack = { navController.popBackStack() })
         }
@@ -105,8 +84,10 @@ fun MyApp() {
             Info (userName = Globals.userName ?: "Invitado", onBack = { navController.popBackStack() })
         }
 
+        composable("analisis") {
+            ListaEjemplos(onBack = { navController.popBackStack() })
+        }
 
     }
-
 
 }
