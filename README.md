@@ -32,7 +32,7 @@ de tal forma que existe solo un compose para visualizar los indicadores:
 
 Dashboard -> BotonCard -> (BotonMenuData) -> BotonCard.kt -> MyApp.kt( rutas )
  
-Existen dos tipo de botones de menú: los indicadores que utilizan  un parametro en la ruta y 
+Existen dos tipo de botones de menú: los indicadores que utilizan  un parámetro en la ruta y 
 las rutas "estaticas" donde cada "boton" es un módulo como : Calculadora.
 
 AnalisisScreen: se puede visualizar los diferentes análisis de información relacionada
@@ -48,7 +48,7 @@ a los indicadores económicos y se hace uso de :
 - Excepciones
 - Try/Catch
 
-(EjemplosData, Hepers)
+(EjemplosData, Helpers)
 
 ## Revisar 
 
