@@ -22,7 +22,7 @@ las rutas "estaticas" donde cada "botón" es un módulo como : Calculadora.
 
 ## Módulos Semana 6
 
-Nuevos Módulos Semana 6 para complementar lo solicitado de la formativa.
+Nuevos Módulos (botón de menúes) Semana 6 para complementar lo solicitado de la formativa.
 
 - Clima (Content Provider Simulado)
   - Opcion que permite mostrar el clima fecha, tº y condición.
@@ -30,7 +30,6 @@ Nuevos Módulos Semana 6 para complementar lo solicitado de la formativa.
   - Este widget permite al usuario determinar que tamaño de fuente es la adecuada para su condición.
 - Color (Palettes)
   - Esta opción o módulo pemite al usuario determinar que colores (aleatorios) le resultan mas "comodos".
-
 
 ## Consideraciones Semana 6
 
@@ -40,7 +39,7 @@ Se han "adecuado" ciertos elementos para cumplir con la formativa
   Dentro de setContent { ... } defino todo mi árbol de Composables.
   Normalmente no se van creando más Activities, sino que se maneja todo con Navigation Compose (pantallas, rutas, NavHost, etc.).
 
-- Fragment: Se puede observar en DashBoard.kt BotonCardFragmentViewGroup donde LazyVerticalGrid se van creado dinamicamente 
+- Fragment: Se puede observar en DashBoard.kt BotonCardFragmentViewGroup donde en el LazyVerticalGrid se van creado dinamicamente 
   los botones por medio de defragment, view y viewGroups
 
 - Buttons y Events: En general el uso de este tipo de botones se puede apreciar en el desarrollo de la actividad.
