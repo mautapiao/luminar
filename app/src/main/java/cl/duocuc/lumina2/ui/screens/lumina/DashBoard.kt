@@ -1,6 +1,8 @@
 package cl.duocuc.lumina2.ui.screens.lumina
 
+import android.R.attr.onClick
 import androidx.compose.foundation.background
+import androidx.compose.foundation.clickable
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.Spacer
@@ -8,14 +10,23 @@ import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.height
 import androidx.compose.foundation.layout.padding
+import androidx.compose.foundation.lazy.LazyColumn
 import androidx.compose.foundation.lazy.grid.GridCells
 import androidx.compose.foundation.lazy.grid.LazyVerticalGrid
 import androidx.compose.foundation.lazy.grid.items
+import androidx.compose.foundation.rememberScrollState
+import androidx.compose.foundation.verticalScroll
+import androidx.compose.material3.Card
+
+
+import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.Scaffold
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
+import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
+import androidx.compose.ui.semantics.semantics
 import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
@@ -23,8 +34,10 @@ import androidx.compose.ui.unit.sp
 import androidx.navigation.NavHostController
 import androidx.navigation.compose.rememberNavController
 import cl.duocuc.lumina2.data.BotonMenuData
+import cl.duocuc.lumina2.data.fake.FakeWeatherProvider
 import cl.duocuc.lumina2.utils.getCurrentDate
 
+// en JetPack Compose, el equivalente de una view es un Composable (@composable)
 @Composable
 fun DashboardScreen(
     navController: NavHostController, // recibe el navController como parametro
@@ -64,12 +77,12 @@ fun DashboardScreen(
 
         ) {
             // Espacio entre elementos
-            Spacer(modifier = Modifier.height(85.dp))
+            Spacer(modifier = Modifier.height(70.dp))
 
             // fecha actual utils getCurrentDate()
             Text(
                 text = getCurrentDate().uppercase(),
-                fontSize = 26.sp,
+                fontSize = 25.sp,
                 color = Color.White,
                 textAlign = TextAlign.Center,
                 modifier = Modifier.fillMaxWidth()
@@ -85,16 +98,22 @@ fun DashboardScreen(
                 // Es una "función de iteración especializada para Compose"
                 // que se comporta como un bucle pero optimizado para UI reactiva.
 
+                // fragment, view y viewGroups
+
                 items(botones) { boton ->
+
                     // Usa botonCard.kt
-                    BotonCard(
+
+                    BotonCardFragmentViewGroup(
                         item = boton,
+
+                        // el onClick está configurado para navegar a una ruta de destino.
                         onClick = {
                             navController.navigate(boton.destino)
                         }
                     )
-                }
 
+                }
 
             }
 

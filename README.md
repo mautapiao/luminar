@@ -9,6 +9,62 @@
 
 - Para todos clave: 123456
 
+## Nota
+
+Se cumple con lo solicitado en cuanto a revisar contenido como Fragment, Views y ViewGroups, Content Provider Simulado,
+Wigets, Pallette Texts, Button y Event.
+
+## Flujo de menú principal
+Dashboard -> BotonCard -> (BotonMenuData) -> BotonCard.kt -> MyApp.kt( rutas ) -> @composables
+ 
+Existen dos tipo de botones de menú: los indicadores que utilizan un parámetro en la ruta y 
+las rutas "estaticas" donde cada "botón" es un módulo como : Calculadora.
+
+## Módulos Semana 6
+
+Nuevos Módulos Semana 6 para complementar lo solicitado de la formativa.
+
+- Clima (Content Provider Simulado)
+  - Opcion que permite mostrar el clima fecha, tº y condición.
+- Tamaño ( Widget )
+  - Este widget permite al usuario determinar que tamaño de fuente es la adecuada para su condición.
+- Color (Palettes)
+  - Esta opción o módulo pemite al usuario determinar que colores (aleatorios) le resultan mas "comodos".
+
+
+## Consideraciones Semana 6
+
+Se han "adecuado" ciertos elementos para cumplir con la formativa
+
+- Activity: (MainActivity) Es mi Activity en Jetpack Compose, es una sola Activity que actúa como contenedor raíz de la aplicación. 
+  Dentro de setContent { ... } defino todo mi árbol de Composables.
+  Normalmente no se van creando más Activities, sino que se maneja todo con Navigation Compose (pantallas, rutas, NavHost, etc.).
+
+- Fragment: Se puede observar en DashBoard.kt BotonCardFragmentViewGroup donde LazyVerticalGrid se van creado dinamicamente 
+  los botones por medio de defragment, view y viewGroups
+
+- Buttons y Events: En general el uso de este tipo de botones se puede apreciar en el desarrollo de la actividad.
+  por ejemplo al crear los botones de menues se van enviado eventos para ser ejecutados en cada boton en este caso
+  se envía una ruta de destino.
+
+   BotonCardFragmentViewGroup(
+                   item = boton,
+                   // el onClick está configurado para navegar a una ruta de destino.
+                   onClick = {
+                          navController.navigate(boton.destino)
+                        }
+                    )
+
+
+## Semana 5 replica
+
+- Github, lo lamento no lo adjunte pero es utilizado y se qdjunta en semana 6.
+- lambda con etiqueta: Se hace uso en EjemplosData.tk (data/) línea 44
+
+## Seguire trabajando en las Oportunidades de mejora y Recomendaciones de mejora y optimización de código
+
+## Otros semanas anteriores
+
 ## Generador de contraseñas
 
 Clase: BasePasswordGenerator, StrongPasswordGenerator.
@@ -22,18 +78,7 @@ Polimorfismo: simpleGen y strongGen son del tipo PasswordGenerator, pero generan
 
 ## Generador de contraseñas
 
-ui/screens/lumina/info.kt 
-
-## Nota
-
-Se cumple con lo solicitado en cuanto a aplicar los senetencias solicitadas, 
-la mayoría de ellas se realiza en AnalisisScreen.kt, se refactorizo IndicatorScreen.kt
-de tal forma que existe solo un compose para visualizar los indicadores:
-
-Dashboard -> BotonCard -> (BotonMenuData) -> BotonCard.kt -> MyApp.kt( rutas )
- 
-Existen dos tipo de botones de menú: los indicadores que utilizan  un parámetro en la ruta y 
-las rutas "estaticas" donde cada "boton" es un módulo como : Calculadora.
+ui/screens/lumina/info.kt
 
 AnalisisScreen: se puede visualizar los diferentes análisis de información relacionada
 a los indicadores económicos y se hace uso de :

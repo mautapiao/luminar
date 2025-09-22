@@ -7,6 +7,12 @@ import androidx.activity.enableEdgeToEdge
 import cl.duocuc.lumina2.ui.screens.lumina.MyApp
 import cl.duocuc.lumina2.ui.theme.Lumina2Theme
 
+// Esta es mi Activity en Jetpack Compose.
+// Es una sola Activity que actúa como contenedor raíz de la aplicación.
+// Dentro de setContent { ... } defino todo mi árbol de Composables.
+// Normalmente no se van creando más Activities,
+// sino que se maneja todo con Navigation Compose (pantallas, rutas, NavHost, etc.).
+
 class MainActivity : ComponentActivity() {
     /**
      * onCreate: Método que se ejecuta cuando se crea la actividad

@@ -77,17 +77,36 @@ fun MyApp() {
 
         // otras opciones que no son indicadores
         composable("calc") {
-            Calculadora (onBack = { navController.popBackStack() })
+            Calculadora(onBack = { navController.popBackStack() })
         }
 
         composable("info") {
-            Info (userName = Globals.userName ?: "Invitado", onBack = { navController.popBackStack() })
+            Info(
+                userName = Globals.userName ?: "Invitado",
+                onBack = { navController.popBackStack() })
         }
 
         composable("analisis") {
             ListaEjemplos(onBack = { navController.popBackStack() })
         }
 
-    }
+        composable("weather") {
+            Weather(onBack = { navController.popBackStack() })
 
+        }
+
+        composable("textsizeselector") {
+            TextSizeSelector (onBack = { navController.popBackStack() })
+
+        }
+
+        composable("colortestcard") {
+            ColorTestCard (onBack = { navController.popBackStack() })
+
+        }
+
+
+
+
+    }
 }

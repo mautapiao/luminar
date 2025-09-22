@@ -4,10 +4,13 @@ import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.filled.AccountBalance
 import androidx.compose.material.icons.filled.Analytics
 import androidx.compose.material.icons.filled.Calculate
+import androidx.compose.material.icons.filled.Colorize
 import androidx.compose.material.icons.filled.CurrencyExchange
+import androidx.compose.material.icons.filled.FontDownload
 import androidx.compose.material.icons.filled.Paid
 import androidx.compose.material.icons.filled.Password
 import androidx.compose.material.icons.filled.TrendingUp
+import androidx.compose.material.icons.filled.WbSunny
 import androidx.compose.ui.graphics.Color
 import cl.duocuc.lumina2.utils.BotonItem
 
@@ -72,10 +75,33 @@ object BotonMenuData {
             icono = Icons.Default.Password,
             titulo = "PASS",
             descripcion = "Acerca de...",
-            color = Color(0xFF2E5339), // azul
+            color = Color(0xFFFF4081), // azul
             destino = "info"
 
+        ),
+        BotonItem(
+            icono = Icons.Default.WbSunny,
+            titulo = "CLIMA",
+            descripcion = "El tiempo...",
+            color = Color(0xFFFF6E40), // azul
+            destino = "weather"
+
+        ),
+        BotonItem(
+            icono = Icons.Default.FontDownload,
+            titulo = "TAMAÑO",
+            descripcion = "Del texto widget...",
+            color = Color(0xFF2E5339), // azul
+            destino = "textsizeselector"
+        ),
+        BotonItem(
+            icono = Icons.Default.Colorize,
+            titulo = "COLOR",
+            descripcion = "Color palette...",
+            color = Color(0xFF7C4DFF), // azul
+            destino = "colortestcard"
         )
+
     )
 
 }

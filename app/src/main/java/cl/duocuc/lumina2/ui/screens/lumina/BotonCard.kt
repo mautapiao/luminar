@@ -29,7 +29,7 @@ import androidx.compose.ui.unit.sp
 
 // Composable para cada botón
 @Composable
-fun BotonCard(
+fun BotonCardFragmentViewGroup(
     item: BotonItem,
     onClick: () -> Unit
 ) {
