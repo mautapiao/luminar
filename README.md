@@ -57,10 +57,10 @@ Se han "adecuado" ciertos elementos para cumplir con la formativa
 
 ## Semana 5 replica
 
-- Github, lo lamento no lo adjunte pero es utilizado y se qdjunta en semana 6.
+- Github, lo lamento no lo adjunte pero es utilizado y se adjunta en semana 6.
 - lambda con etiqueta: Se hace uso en EjemplosData.tk (data/) línea 44
 
-## Seguire trabajando en las Oportunidades de mejora y Recomendaciones de mejora y optimización de código
+## Seguiré trabajando en las: Oportunidades de mejora y Recomendaciones de mejora y optimización de código
 
 ## Otros semanas anteriores
 
