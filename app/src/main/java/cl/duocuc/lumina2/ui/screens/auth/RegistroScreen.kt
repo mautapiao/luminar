@@ -32,9 +32,11 @@ import androidx.compose.runtime.remember
 import androidx.compose.runtime.rememberCoroutineScope
 import androidx.compose.runtime.setValue
 import androidx.compose.ui.Modifier
+import androidx.compose.ui.platform.LocalContext
 import androidx.compose.ui.text.input.PasswordVisualTransformation
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
+import cl.duocuc.lumina2.data.db.AppDatabase
 import cl.duocuc.lumina2.data.model.User
 import cl.duocuc.lumina2.data.repository.UserRepository
 import cl.duocuc.lumina2.ui.screens.lumina.SimpleTopBar
@@ -61,6 +63,7 @@ fun RegistroScreen(onRegisterDone: () -> Unit, onBack: () -> Unit) {
     var paisSelected by remember { mutableStateOf(paises.first()) }
     val snackbarHostState = remember { SnackbarHostState() }
     val scope = rememberCoroutineScope()
+    val context = LocalContext.current
 
     Scaffold(
         topBar = { SimpleTopBar(title = "Regresar", showBack = true, onBack = onBack) },
@@ -76,7 +79,7 @@ fun RegistroScreen(onRegisterDone: () -> Unit, onBack: () -> Unit) {
             // espacio que ayuda que no quede debajo de la topbar
             Spacer(
                 Modifier
-                    .height(85.dp)
+                    .height(100.dp)
                     .fillMaxWidth()
             )
 
@@ -205,20 +208,25 @@ fun RegistroScreen(onRegisterDone: () -> Unit, onBack: () -> Unit) {
                         return@Button
                     }
 
-
                     // FIN DE LA VALIDACIÓN
 
-                    // creamos el objeto usurio
+                    // creamos el objeto usuario
                     val nuevoUsuario = User(
                         name = nombre,
                         email = email.trim(),
                         password = password,
-                        country = pais
+                        country = paisSelected
                     )
+
                     // registramos y esperamos el resultado
-                    val registrado = UserRepository.register(nuevoUsuario)
 
                     scope.launch {
+
+                        val db = AppDatabase.getDatabase(context )
+                        val userRepository = UserRepository(db.userDao())
+
+                        val registrado =userRepository.register(nuevoUsuario)
+
                         if (registrado) {
                             snackbarHostState.showSnackbar("Usuario registrado con éxito")
 
@@ -242,8 +250,6 @@ fun RegistroScreen(onRegisterDone: () -> Unit, onBack: () -> Unit) {
             ) {
                 Text("Registrarse", fontSize = BUTTON_TEXT.sp)
             }
-
-
         }
     }
 }

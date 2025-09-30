@@ -1,9 +1,11 @@
 package cl.duocuc.lumina2.ui.screens.lumina
 
 import androidx.compose.runtime.Composable
+import androidx.compose.ui.platform.LocalContext
 import androidx.navigation.compose.NavHost
 import androidx.navigation.compose.composable
 import androidx.navigation.compose.rememberNavController
+import cl.duocuc.lumina2.data.db.AppDatabase
 import cl.duocuc.lumina2.data.repository.UserRepository
 import cl.duocuc.lumina2.ui.screens.auth.LoginScreen
 import cl.duocuc.lumina2.ui.screens.auth.RecuperarPasswordScreen
@@ -14,11 +16,15 @@ import cl.duocuc.lumina2.utils.Globals
 fun MyApp() {
 
     val navController = rememberNavController()
-
+    val context = LocalContext.current
     // cargo los 5 usuarios creados por defectos en el array modelo User repo User
     androidx.compose.runtime.LaunchedEffect(Unit) {
         // repository funcion para crear usuarios por defecto
-        UserRepository.seedDefaultsIfEmpty()
+        val db = AppDatabase.getDatabase(context )
+        val userRepository = UserRepository(db.userDao())
+
+        userRepository.seedDefaults()
+
     }
     /**
      * Sistema de navegación

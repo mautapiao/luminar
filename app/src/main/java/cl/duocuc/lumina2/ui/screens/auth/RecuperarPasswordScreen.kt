@@ -46,7 +46,7 @@ fun RecuperarPasswordScreen(onBack: () -> Unit) {
             // espacio que ayuda que no quede debajo de la topbar
             Spacer(
                 Modifier
-                    .height(85.dp)
+                    .height(100.dp)
                     .fillMaxWidth()
             )
 

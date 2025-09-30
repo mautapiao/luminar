@@ -1,5 +1,8 @@
 package cl.duocuc.lumina2.data.model
 
+import androidx.room.Entity
+import androidx.room.Ignore
+import androidx.room.PrimaryKey
 import cl.duocuc.lumina2.data.interfaces.Info
 
 /**
@@ -13,7 +16,9 @@ import cl.duocuc.lumina2.data.interfaces.Info
  */
 
 // CLASE: Definición de una clase user
+@Entity(tableName = "users")
 data class User(
+    @PrimaryKey(autoGenerate = true) val id: Int = 0,
     val name: String,
     val email: String,
     val password: String,
@@ -21,7 +26,9 @@ data class User(
 ) : Info {
     // CONSTRUCTOR principal con parametros
 
+
     // PROPIEDAD calculada: largo de la clave
+    @Ignore
     var largoPassword: Int = password.length
 
     // METODO: Evalúa seguridad de la clave

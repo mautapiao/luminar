@@ -1,6 +1,7 @@
 package cl.duocuc.lumina2.ui.screens.auth
 
 // Para el componente Icon
+import android.content.Context
 import androidx.compose.foundation.Image
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.Spacer
@@ -30,6 +31,7 @@ import androidx.compose.runtime.rememberCoroutineScope
 import androidx.compose.runtime.setValue
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
+import androidx.compose.ui.platform.LocalContext
 import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.semantics.semantics
 import androidx.compose.ui.text.input.PasswordVisualTransformation
@@ -43,6 +45,8 @@ import cl.duocuc.lumina2.ui.theme.FontSizes.BUTTON_TEXT_LABEL
 import cl.duocuc.lumina2.ui.theme.FontSizes.TEXT_SIZE_INPUT
 import kotlinx.coroutines.launch
 import androidx.compose.ui.semantics.contentDescription
+import androidx.core.content.edit
+import cl.duocuc.lumina2.data.db.AppDatabase
 import cl.duocuc.lumina2.utils.BasePasswordGenerator
 import cl.duocuc.lumina2.utils.StrongPasswordGenerator
 import cl.duocuc.lumina2.utils.Globals
@@ -60,6 +64,8 @@ fun LoginScreen(onLogin: () -> Unit, onRegister: () -> Unit, onForgotPassword: (
 
     // Regex para email más preciso
     val emailRegex = "^[A-Za-z0-9+_.-]+@[A-Za-z0-9.-]+\\.[A-Za-z]{2,}$".toRegex()
+
+    val context = LocalContext.current
 
     /**
      * Valida el formato y contenido de un email
@@ -308,9 +314,26 @@ fun LoginScreen(onLogin: () -> Unit, onRegister: () -> Unit, onForgotPassword: (
 
                         // valido si el email existe
 
-                        val puedeIngresar = UserRepository.login(email, password)
                         scope.launch {
+
+                            // Lanzamos una corrutina en el scope actual (por ejemplo, el de una pantalla o ViewModel)
+                            // Esto permite ejecutar operaciones de suspensión (como consultas a Room) sin bloquear la UI
+
+                            val db = AppDatabase.getDatabase(context)
+                            // Obtenemos una instancia única (singleton) de la base de datos Room
+                            // Se necesita el `context` para crear/abrir el archivo físico de la BD en el dispositivo
+
+                            val userRepository = UserRepository(db.userDao())
+                            // Creamos el repositorio de usuarios, pasándole el DAO (interfaz que contiene las queries)
+                            // El repositorio es el intermediario entre la UI y la base de datos
+
+                            val puedeIngresar = userRepository.login(email, password)
+                            // Llamamos al método `login`, que consulta la base de datos buscando un usuario con
+                            // el email y password entregados. Retorna true o false según si las credenciales son válidas
+
                             if (puedeIngresar) {
+                                // validación fue correcta, mostrar un mensaje de éxito.
+
 
                                 /**
                                  * aqui lo que necesito almacenar son los datos de "sesion"
@@ -318,7 +341,7 @@ fun LoginScreen(onLogin: () -> Unit, onRegister: () -> Unit, onForgotPassword: (
                                  * en un objeto ubicado el utils Globals.kt
                                  **/
                                 Globals.userEmail = email
-                                Globals.userName = UserRepository.userName(email)
+                                Globals.userName = userRepository.userName(email)
 
                                 val test1 = Globals.userName
 
@@ -331,9 +354,9 @@ fun LoginScreen(onLogin: () -> Unit, onRegister: () -> Unit, onForgotPassword: (
 
                                 // seguridad
 
-                                println("Password: ${UserRepository.userPasswordSecurity(email)}")
+                                println("Password: ${userRepository.userPasswordSecurity(email)}")
 
-                                println("Info: ${UserRepository.userInfo(email)}")
+                                println("Info: ${userRepository.userInfo(email)}")
 
                                 // OBJETOS
                                 // Crear un generador básico (hereda de la clase base)
@@ -348,6 +371,24 @@ fun LoginScreen(onLogin: () -> Unit, onRegister: () -> Unit, onForgotPassword: (
 
                                 // originalmente se uso toast pero en jatpack compose se usa este scaffolt
                                 // snackbarHostState.showSnackbar("Inicio de sesión exitoso")
+
+
+
+                                // Guardar sesión original
+                                //val pre = context.getSharedPreferences("app_prefs", Context.MODE_PRIVATE)
+                                //prefs.edit()
+                                //    .putBoolean("isLogged", true)
+                                //    .putString("correo", email)
+                                 //   .apply()
+
+
+                                // lo cambie por recomendacion de android
+                                // forma moderna (KTX)
+                                val prefs = context.getSharedPreferences("app_prefs", Context.MODE_PRIVATE)
+                                prefs.edit{
+                                    putBoolean("isLogged", true)
+                                    putString("correo", email)
+                                }
 
                                 // EJECUCIÓN DEL LOGIN
                                 // onLogin() es una función callback que maneja la lógica de autenticación

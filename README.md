@@ -11,14 +11,32 @@
 
 ## Nota
 
-Se cumple con lo solicitado en cuanto a revisar contenido como Fragment, Views y ViewGroups, Content Provider Simulado,
-Wigets, Pallette Texts, Button y Event.
+Se configura una conexión a base de datos  sqlite para registro y autentificación de usuarios
+
 
 ## Flujo de menú principal
 Dashboard -> BotonCard -> (BotonMenuData) -> BotonCard.kt -> MyApp.kt( rutas ) -> @composables
  
 Existen dos tipo de botones de menú: los indicadores que utilizan un parámetro en la ruta y 
 las rutas "estaticas" donde cada "botón" es un módulo como : Calculadora.
+
+
+## Nuevos Archivos Semana 7
+
+Data:
+
+- dao - UserDao
+- db - AppDataBase.kt
+- model - User, se hacen los cambios necesarios para usar el modelo.
+- repository - UserRepository
+
+ui:
+- auth - LoginScreen.kt
+- auth - RegistroScreen.kt
+
+
+
+
 
 ## Módulos Semana 6
 

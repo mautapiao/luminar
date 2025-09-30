@@ -1,6 +1,7 @@
 package cl.duocuc.lumina2.data.repository
 
 import androidx.compose.runtime.mutableStateListOf
+import cl.duocuc.lumina2.data.dao.UserDao
 import cl.duocuc.lumina2.data.model.User
 
 /**
@@ -12,91 +13,67 @@ import cl.duocuc.lumina2.data.model.User
  *    Colecciones: mutableStateListOf<User>()
  *    Encapsulación: la lógica de usuarios está dentro del repositorio
  */
-object UserRepository {
+class UserRepository( private val userDao: UserDao) {
 
-    // mutableStateListOf => si la lista cambia
-    // Colecciones → mutableStateListOf<User>()
-    val users = mutableStateListOf<User>()
+    // registrar usuario
+    suspend fun register(user: User): Boolean {
+        // Verificar si ya existe un usuario con el mismo email
+        val existe = userDao.getUserByEmail(user.email)
 
-    // Llenar con 5 usuarios por defecto (una sola vez)
-    fun seedDefaultsIfEmpty() {
-        if (users.isNotEmpty()) return
-        users.addAll(
-            listOf(
-                User(
-                    name = "Ana Pérez",
-                    email = "ana@demo.com",
-                    password = "123456",
-                    country = "Chile"
-                ),
-                User(
-                    name = "Juan López",
-                    email = "juan@demo.com",
-                    password = "123456",
-                    country = "Chile"
-                ),
-                User(
-                    name = "María Díaz",
-                    email = "maria@demo.com",
-                    password = "123456",
-                    country = "Perú"
-                ),
-                User(
-                    name = "Carlos Ruiz",
-                    email = "carlos@demo.com",
-                    password = "123456",
-                    country = "Argentina"
-                ),
-                User(
-                    name = "Lucía Gómez",
-                    email = "lucia@demo.com",
-                    password = "123456",
-                    country = "México"
-                ),
-            )
+        return if (existe == null) {
+            userDao.insert(user)
+            true  // registrado con éxito
+        } else {
+            false // ya existe correo
+        }
+    }
+
+    // obtener todos los usuarios
+    suspend fun getUsers(): List<User> {
+        return userDao.getAll()
+    }
+
+    suspend fun seedDefaults() {
+        val defaults = listOf(
+            User(name = "Ana Pérez", email = "ana@demo.com", password = "123456", country = "Chile"),
+            User(name = "Juan López", email = "juan@demo.com", password = "123456", country = "Chile"),
+            User(name = "María Díaz", email = "maria@demo.com", password = "123456", country = "Perú"),
+            User(name = "Carlos Ruiz", email = "carlos@demo.com", password = "123456", country = "Argentina"),
+            User(name = "Lucía Gómez", email = "lucia@demo.com", password = "123456", country = "México")
         )
+
+        defaults.forEach { user ->
+            val exists = userDao.getUserByEmail(user.email)
+            if (exists == null) {
+                userDao.insert(user) // solo inserta si no existe ese email
+            }
+        }
     }
 
-    // Registrar un nuevo usuario
-    // Retorna false si el correo ya existe
-    fun register(user: User): Boolean {
-        val exists = users.any { it.email.equals(user.email, ignoreCase = true) }
-        if (exists) return false
-        users.add(user)
-        return true
-    }
-
-    // Verificar credenciales para login
-    // Retorna true si el email existe y la contraseña coincide
-    fun login(email: String, password: String): Boolean {
-        val user = users.find { it.email.equals(email, ignoreCase = true) }
+    // suspend -> etiqueta para funciones que pueden usarse en corrutinas.
+    // Login: verificar si existe y coincide contraseña
+    suspend fun login(email: String, password: String): Boolean {
+        val user = userDao.getUserByEmail(email)
         return user?.password == password
     }
 
-    // retornar el nombre del usuario
-    fun userName(email: String): String? {
-        val user = users.find { it.email.equals(email, ignoreCase = true) }
+    // Retornar el nombre del usuario
+    suspend fun userName(email: String): String? {
+        val user = userDao.getUserByEmail(email)
         return user?.name
     }
 
     // Retornar seguridad de la clave
-    fun userPasswordSecurity(email: String): String? {
-        val user = users.find { it.email.equals(email, ignoreCase = true) }
+    suspend fun userPasswordSecurity(email: String): String? {
+        val user = userDao.getUserByEmail(email)
         return user?.seguridad()
     }
 
     // Retornar info del usuario usando showInfo()
-    fun userInfo(email: String): String? {
-        val user = users.find { it.email.equals(email, ignoreCase = true) }
+    suspend fun userInfo(email: String): String? {
+        val user = userDao.getUserByEmail(email)
         return user?.showInfo()
     }
 
-    // ejemplo
-    // val puedeIngresar = UserRepository.login("ana@demo.com", "123456")
-    // if (puedeIngresar) {
-    //    println("Login exitoso")
-    // } else {
-    //    println("Correo o contraseña incorrectos")
-    //}
 
 }

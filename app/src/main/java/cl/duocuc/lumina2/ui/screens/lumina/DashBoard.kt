@@ -77,7 +77,7 @@ fun DashboardScreen(
 
         ) {
             // Espacio entre elementos
-            Spacer(modifier = Modifier.height(70.dp))
+            Spacer(modifier = Modifier.height(100.dp))
 
             // fecha actual utils getCurrentDate()
             Text(

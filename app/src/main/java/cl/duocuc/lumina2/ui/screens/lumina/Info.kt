@@ -18,6 +18,7 @@ import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import androidx.compose.material3.Button
 import androidx.compose.ui.Alignment
+import androidx.compose.ui.platform.LocalContext
 import cl.duocuc.lumina2.data.interfaces.PasswordGenerator
 import cl.duocuc.lumina2.utils.BasePasswordGenerator
 import cl.duocuc.lumina2.utils.StrongPasswordGenerator
@@ -36,6 +37,7 @@ fun Info(userName: String, onBack: () -> Unit) {
 
     var displayedText by remember { mutableStateOf("") }
     var password by remember { mutableStateOf("") }
+    val context = LocalContext.current
     // trimIndent() función de Kotlin utilizada para eliminar
     // una cantidad constante de espacios en blanco al principio
     // de cada línea de una cadena multilínea
@@ -43,9 +45,13 @@ fun Info(userName: String, onBack: () -> Unit) {
     // La idea era hacer una marquesina tipo años 2000 pero se me
     // paso el tiempo
 
+
     val email = Globals.userEmail;
-    val passwordAux = UserRepository.userPasswordSecurity(email.toString())
-    val info = UserRepository.userInfo(email.toString())
+   // val passwordAux = UserRepository.userPasswordSecurity(email.toString())
+  //  val info = UserRepository.userInfo(email.toString())
+
+    val passwordAux = ""
+    val info  =""
 
     val fullText = """
     $info

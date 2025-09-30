@@ -2,6 +2,7 @@ plugins {
     alias(libs.plugins.android.application)
     alias(libs.plugins.kotlin.android)
     alias(libs.plugins.kotlin.compose)
+    id("org.jetbrains.kotlin.kapt")
 }
 
 android {
@@ -10,7 +11,7 @@ android {
 
     defaultConfig {
         applicationId = "cl.duocuc.lumina2"
-        minSdk = 21
+        minSdk = 23
         targetSdk = 36
         versionCode = 1
         versionName = "1.0"
@@ -63,4 +64,9 @@ dependencies {
     implementation("androidx.navigation:navigation-compose:2.8.0")
 
     implementation("androidx.compose.material:material-icons-extended:1.6.7")
+
+    // Room
+    implementation("androidx.room:room-runtime:2.8.0")   // runtime obligatorio
+    kapt("androidx.room:room-compiler:2.8.0")            // genera AppDatabase_Impl
+    implementation("androidx.room:room-ktx:2.8.0")       // corrutinas y helpers
 }
