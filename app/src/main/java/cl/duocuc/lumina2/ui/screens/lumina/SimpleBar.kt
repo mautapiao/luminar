@@ -53,7 +53,7 @@ fun SimpleTopBar(
             containerColor = MaterialTheme.colorScheme.onSecondary,    // primary
             titleContentColor = MaterialTheme.colorScheme.secondary,  // onPrimary
             navigationIconContentColor = MaterialTheme.colorScheme.secondary, //onPrimary
-            actionIconContentColor = MaterialTheme.colorScheme.onPrimary
+            actionIconContentColor = MaterialTheme.colorScheme.secondary
         )
     )
 }

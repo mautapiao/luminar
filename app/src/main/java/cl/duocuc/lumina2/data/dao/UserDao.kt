@@ -3,6 +3,7 @@ package cl.duocuc.lumina2.data.dao
 import androidx.room.Dao
 import androidx.room.Insert
 import androidx.room.Query
+import androidx.room.Update
 import cl.duocuc.lumina2.data.model.User
 
 @Dao
@@ -24,6 +25,9 @@ interface UserDao {
     suspend fun getAll(): List<User>
     // Obtiene todos los registros de la tabla "users"
     // Devuelve una lista de usuarios (puede ser vacía si no hay registros)
+
+    @Update
+    suspend fun updateUser(user: User)
 }
 
 /*

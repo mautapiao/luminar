@@ -53,6 +53,10 @@ dependencies {
     implementation(libs.material3)
     implementation(libs.androidx.foundation)
     implementation(libs.androidx.runtime)
+    implementation(libs.runtime)
+    implementation(libs.foundation)
+    implementation(libs.androidx.compose.material3.material3)
+    implementation(libs.androidx.foundation.layout)
     testImplementation(libs.junit)
     androidTestImplementation(libs.androidx.junit)
     androidTestImplementation(libs.androidx.espresso.core)
@@ -69,4 +73,15 @@ dependencies {
     implementation("androidx.room:room-runtime:2.8.0")   // runtime obligatorio
     kapt("androidx.room:room-compiler:2.8.0")            // genera AppDatabase_Impl
     implementation("androidx.room:room-ktx:2.8.0")       // corrutinas y helpers
+
+    // Unit tests
+    testImplementation(libs.junit)
+    testImplementation(libs.mockito.core)
+    testImplementation(libs.mockito.kotlin)
+
+    androidTestImplementation(libs.androidx.ui.test.junit4)
+    debugImplementation(libs.androidx.ui.test.manifest)
+    testImplementation(kotlin("test"))
+
+
 }

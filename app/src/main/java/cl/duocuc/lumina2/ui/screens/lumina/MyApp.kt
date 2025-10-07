@@ -86,6 +86,10 @@ fun MyApp() {
             Calculadora(onBack = { navController.popBackStack() })
         }
 
+        composable("profile") {
+            Profile(onBack = { navController.popBackStack() },database = AppDatabase.getDatabase(context))
+        }
+
         composable("info") {
             Info(
                 userName = Globals.userName ?: "Invitado",

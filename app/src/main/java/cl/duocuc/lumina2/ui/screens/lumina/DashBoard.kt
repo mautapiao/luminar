@@ -56,7 +56,17 @@ fun DashboardScreen(
 
     Scaffold(
         // topBar es un parámetro slot del Scaffold que define la barra superior de la pantalla.
-        topBar = { SimpleTopBar(title = "Cerrar", showBack = true, onBack = onBack) }
+        topBar = { SimpleTopBar(title = "Cerrar", showBack = true, onBack = onBack,
+            onSettings = {
+                // aquí la acción del botón ajustes
+                navController.navigate("profile")
+                //println("⚙️ Ajustes presionado")
+                // podrías navegar a la pantalla de configuración, por ejemplo:
+                // navController.navigate("settings")
+            }
+
+
+        ) }
     ) {
 
         // padding es un parámetro lambda que recibe los valores de padding calculados
