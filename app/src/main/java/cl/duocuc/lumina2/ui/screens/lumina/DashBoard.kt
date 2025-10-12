@@ -26,6 +26,7 @@ import androidx.compose.runtime.Composable
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
+import androidx.compose.ui.platform.LocalContext
 import androidx.compose.ui.semantics.semantics
 import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.tooling.preview.Preview
@@ -35,6 +36,7 @@ import androidx.navigation.NavHostController
 import androidx.navigation.compose.rememberNavController
 import cl.duocuc.lumina2.data.BotonMenuData
 import cl.duocuc.lumina2.data.fake.FakeWeatherProvider
+import cl.duocuc.lumina2.utils.PrefsHelper
 import cl.duocuc.lumina2.utils.getCurrentDate
 
 // en JetPack Compose, el equivalente de una view es un Composable (@composable)
@@ -60,7 +62,7 @@ fun DashboardScreen(
             onSettings = {
                 // aquí la acción del botón ajustes
                 navController.navigate("profile")
-                //println("⚙️ Ajustes presionado")
+                // println("⚙️ Ajustes presionado")
                 // podrías navegar a la pantalla de configuración, por ejemplo:
                 // navController.navigate("settings")
             }
@@ -89,10 +91,23 @@ fun DashboardScreen(
             // Espacio entre elementos
             Spacer(modifier = Modifier.height(100.dp))
 
+            // bienvenido desde SharedPreferences
+            val context = LocalContext.current
+            val savedName = PrefsHelper.getUserName(context)  // Obtiene el valor guardado
+
+            Text(
+                text = "Bienvenido(a): ${savedName ?: "Desconocido"}",
+                fontSize = 21.sp,
+                color = Color.White,
+                textAlign = TextAlign.Center,
+                modifier = Modifier.fillMaxWidth()
+            )
+
+
             // fecha actual utils getCurrentDate()
             Text(
                 text = getCurrentDate().uppercase(),
-                fontSize = 25.sp,
+                fontSize = 21.sp,
                 color = Color.White,
                 textAlign = TextAlign.Center,
                 modifier = Modifier.fillMaxWidth()

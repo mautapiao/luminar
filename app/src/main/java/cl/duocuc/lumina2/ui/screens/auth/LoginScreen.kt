@@ -50,6 +50,7 @@ import cl.duocuc.lumina2.data.db.AppDatabase
 import cl.duocuc.lumina2.utils.BasePasswordGenerator
 import cl.duocuc.lumina2.utils.StrongPasswordGenerator
 import cl.duocuc.lumina2.utils.Globals
+import cl.duocuc.lumina2.utils.PrefsHelper
 
 @Composable
 fun LoginScreen(onLogin: () -> Unit, onRegister: () -> Unit, onForgotPassword: () -> Unit) {
@@ -344,6 +345,12 @@ fun LoginScreen(onLogin: () -> Unit, onRegister: () -> Unit, onForgotPassword: (
                                 Globals.userName = userRepository.userName(email)
 
                                 val test1 = Globals.userName
+
+                                val name = userRepository.userName(email)
+
+
+                                // SharedPreferences
+                                PrefsHelper.saveUserName(context, name ?: "")  // Guarda el nombre o cadena vacía si es nulo
 
                                 // Ver Logcat
 
